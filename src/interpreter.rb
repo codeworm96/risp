@@ -10,7 +10,7 @@ module Interpreter
   end
 
   def self.eval_define(args, env)
-    env.define(args[0], args[1])
+    env.define(args[0], eval(args[1], env))
   end
 
   def self.eval_cond(args, env)

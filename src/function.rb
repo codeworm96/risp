@@ -19,7 +19,7 @@ class Closure < Function
     e = Environment.new
     i = 0
     @formals.each {|formal|
-      e.define(formal, value[i])
+      e.define(formal, values[i])
       i += 1
     }
     e.chain(@table)
