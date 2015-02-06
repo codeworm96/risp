@@ -37,6 +37,8 @@ module Interpreter
         eval_cond(sexp[1..-1], env)
       when :define
         eval_define(sexp[1..-1], env)
+      when :quote
+        sexp[1]
       else
         eval(sexp[0], env).apply(sexp[1..-1], env)
       end

@@ -34,4 +34,11 @@ class TestInterpreter < Test::Unit::TestCase
     assert_equal 3.14, Interpreter.eval([[:lambda, [], :a]], e)
   end
 
+  def test_eval_quote
+    e = Environment.new
+    assert_equal [], Interpreter.eval([:quote, []], e)
+    assert_equal [:boy, :girl], Interpreter.eval([:quote, [:boy, :girl]], e)
+    assert_equal :butter, Interpreter.eval([:quote, :butter], e)
+  end
+
 end
