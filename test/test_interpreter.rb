@@ -28,4 +28,10 @@ class TestInterpreter < Test::Unit::TestCase
     assert_equal 0, Interpreter.eval([:cond, [:"#t", 0], [:"#t", 1]], e)
   end
 
+  def test_eval_lambda
+    e = Environment.new
+    e.define(:a, 3.14)
+    assert_equal 3.14, Interpreter.eval([[:lambda, [], :a]], e)
+  end
+
 end

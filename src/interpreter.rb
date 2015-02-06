@@ -1,3 +1,5 @@
+require 'function.rb'
+
 module Interpreter
   def self.eval_atom(atom, env)
     if Symbol === atom
@@ -21,6 +23,10 @@ module Interpreter
         nil
       end
     end
+  end
+
+  def self.eval_lambda(sexp, env)
+    Closure.new(sexp[0], sexp[1], env)
   end
 
   def self.eval_sexp(sexp, env)
