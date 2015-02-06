@@ -4,7 +4,7 @@ require 'environment.rb'
 class Function
   def apply(args, env)
     values = args.map {|arg| Interpreter.eval(arg, env) }
-    body(values)
+    body(*values)
   end
 end
 
@@ -15,7 +15,7 @@ class Closure < Function
     @table = env
   end
 
-  def body(values)
+  def body(*values)
     e = Environment.new
     i = 0
     @formals.each {|formal|
