@@ -89,6 +89,54 @@ class LogicNot < Function
   end
 end
 
+class MathEqual < Function
+  def body(a, b)
+    a == b
+  end
+end
+
+class MathGreater < Function
+  def body(a, b)
+    a > b
+  end
+end
+
+class MathLess < Function
+  def body(a, b)
+    a < b
+  end
+end
+
+class MathAdd < Function
+  def body(a, b)
+    a + b
+  end
+end
+
+class MathSub < Function
+  def body(a, b)
+    a - b
+  end
+end
+
+class MathMul < Function
+  def body(a, b)
+    a * b
+  end
+end
+
+class MathDiv < Function
+  def body(a, b)
+    a / b
+  end
+end
+
+class MathMod < Function
+  def body(a, b)
+    a % b
+  end
+end
+
 class Environment
   def self.new_with_stdlib
     res = Environment.new
@@ -105,6 +153,14 @@ class Environment
     res.define(:and, MacroAnd.new)
     res.define(:or, MacroOr.new)
     res.define(:not, LogicNot.new)
+    res.define(:"=", MathEqual.new)
+    res.define(:>, MathGreater.new)
+    res.define(:<, MathLess.new)
+    res.define(:+, MathAdd.new)
+    res.define(:-, MathSub.new)
+    res.define(:*, MathMul.new)
+    res.define(:/, MathDiv.new)
+    res.define(:%, MathMod.new)
 
     res
   end
