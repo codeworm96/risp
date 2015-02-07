@@ -1,4 +1,4 @@
-require 'interpreter.rb'
+require './interpreter.rb'
 
 class Macro
   def apply(args, env)

@@ -1,7 +1,8 @@
-require 'environment.rb'
-require 'parser.rb'
-require 'interpreter.rb'
-require 'function.rb'
+require './environment.rb'
+require './stdlib.rb'
+require './parser.rb'
+require './interpreter.rb'
+require './function.rb'
 
 class PrimQuit < Function
   def body

@@ -1,5 +1,5 @@
-require 'interpreter.rb'
-require 'environment.rb'
+require './interpreter.rb'
+require './environment.rb'
 
 class Function
   def apply(args, env)
