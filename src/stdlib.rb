@@ -1,6 +1,6 @@
-require './environment.rb'
-require './macro.rb'
-require './function.rb'
+require_relative 'environment.rb'
+require_relative 'macro.rb'
+require_relative 'function.rb'
 
 class PrimCons < Function
   def body(a, b)

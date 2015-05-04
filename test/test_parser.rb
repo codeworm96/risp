@@ -1,4 +1,4 @@
-require '../src/parser.rb'
+require_relative '../src/parser.rb'
 require 'test/unit'
 
 class TestParser < Test::Unit::TestCase
@@ -19,6 +19,12 @@ class TestParser < Test::Unit::TestCase
   def test_read_from_tokens
     assert_equal :+, Parser.read_from_tokens(["+"])
     assert_equal [:+, 1, 2], Parser.read_from_tokens(['(', '+', '1', '2', ')']) 
+    assert_raise(ArgumentError){
+      Parser.read_from_tokens([])
+    }
+    assert_raise(ArgumentError){
+      Parser.read_from_tokens([')'])
+    }
   end
 
   def test_parse

@@ -1,8 +1,9 @@
-require './environment.rb'
-require './stdlib.rb'
-require './parser.rb'
-require './interpreter.rb'
-require './function.rb'
+require 'readline'
+require_relative 'environment.rb'
+require_relative 'stdlib.rb'
+require_relative 'parser.rb'
+require_relative 'interpreter.rb'
+require_relative 'function.rb'
 
 class PrimQuit < Function
   def body
@@ -23,8 +24,8 @@ class REPL
   def run
     catch :quit do
       loop do
-        print "risp> "
-        print "=> ", value(gets), "\n"
+        buf = Readline.readline("risp> ",true)
+        print "=> ", value(buf), "\n"
       end
     end
   end

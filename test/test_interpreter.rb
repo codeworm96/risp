@@ -1,5 +1,5 @@
-require '../src/interpreter.rb'
-require '../src/environment.rb'
+require_relative '../src/interpreter.rb'
+require_relative '../src/environment.rb'
 require 'test/unit'
 
 class TestInterpreter < Test::Unit::TestCase

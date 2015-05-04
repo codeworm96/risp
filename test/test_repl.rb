@@ -1,4 +1,4 @@
-require '../src/repl.rb'
+require_relative '../src/repl.rb'
 require 'test/unit'
 
 class TestREPL < Test::Unit::TestCase
@@ -63,6 +63,21 @@ class TestFac < Test::Unit::TestCase
     assert_equal 2, @app.value("(fac 2 I)")
     assert_equal 6, @app.value("(fac 3 I)")
     assert_equal 120, @app.value("(fac 5 I)")
+  end
+end
+
+class TestAck < Test::Unit::TestCase
+  def setup
+    @app = REPL.new
+    @app.value("(define ack (lambda (m n) (cond ((= m 0) (+ n 1)) ((= n 0) (ack (- m 1) 1)) (else (ack (- m 1) (ack m (- n 1)))))))")
+  end
+
+  def test_ack
+    assert_equal 125, @app.value("(ack 3 4)")
+    assert_equal 1, @app.value("(ack 0 0)")
+    assert_equal 4, @app.value("(ack 0 3)")
+    assert_equal 5, @app.value("(ack 3 0)")
+    assert_equal 61, @app.value("(ack 3 3)")
   end
 end
 

@@ -1,4 +1,4 @@
-require './function.rb'
+require_relative 'function.rb'
 
 module Interpreter
   def self.eval_atom(atom, env)

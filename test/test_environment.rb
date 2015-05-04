@@ -1,4 +1,4 @@
-require '../src/environment.rb'
+require_relative '../src/environment.rb'
 require 'test/unit'
 
 class TestEnvironment < Test::Unit::TestCase

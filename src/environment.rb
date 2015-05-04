@@ -1,7 +1,7 @@
 class Environment
   def initialize
     @entry = {}
-    @outer = nil
+    @outer = nil #outer environment
   end
 
   def lookup(name)
