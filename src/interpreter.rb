@@ -1,5 +1,6 @@
 require_relative 'function.rb'
 require_relative 'state.rb'
+require_relative 'kontinuation.rb'
 
 module Interpreter
   def self.eval_atom(atom, env, kont)
@@ -45,6 +46,10 @@ module Interpreter
         eval_define(sexp[1..-1], env, kont)
       when :quote
         kont[sexp[1]]
+      when :callcc
+        State.new(sexp[1], env, lambda do |res|
+          res.apply([Kontinuation.new(kont)], env, kont)
+        end)
       else
         State.new(sexp[0], env, lambda do |res|
           res.apply(sexp[1..-1], env, kont)

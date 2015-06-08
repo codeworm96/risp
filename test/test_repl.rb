@@ -29,6 +29,11 @@ class TestREPL < Test::Unit::TestCase
     assert_equal false, @app.value("(and #t #t #f)")
   end
 
+  def test_callcc
+    assert_equal 3, @app.value("(+ 1 (callcc (lambda (cc) (cc 2))))")
+    assert_equal 4, @app.value("(+ 1 (callcc (lambda (cc) 3)))")
+  end
+
 end
 
 class TestQsort < Test::Unit::TestCase
