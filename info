@@ -1,0 +1,13 @@
+Loaded suite ./test/test_all
+Started
+................
+
+Finished in 0.678846539 seconds.
+
+16 tests, 63 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+100% passed
+
+23.57 tests/s, 92.80 assertions/s
+[31m0% /home/codeworm/git/risp/src/risp.rb[0m
+[33m75% /home/codeworm/git/risp/src/repl.rb[0m
+[33m96% /home/codeworm/git/risp/src/stdlib.rb[0m

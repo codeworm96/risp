@@ -1,6 +1,7 @@
 require_relative 'interpreter.rb'
 require_relative 'environment.rb'
 require_relative 'kont.rb'
+require_relative 'state.rb'
 
 class Function
 
@@ -44,6 +45,6 @@ class Closure < Function
       i += 1
     }
     e.chain(@table)
-    Interpreter.eval(@body, e, kont)
+    State.new(@body, e, kont)
   end
 end

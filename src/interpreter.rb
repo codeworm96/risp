@@ -1,4 +1,5 @@
 require_relative 'function.rb'
+require_relative 'state.rb'
 
 module Interpreter
   def self.eval_atom(atom, env, kont)
@@ -18,9 +19,9 @@ module Interpreter
   def self.eval_cond(args, env, kont)
     line = args[0]
     if line[0] == :else
-      eval(line[1], env, kont)
+      State.new(line[1], env, kont)
     else 
-      eval(line[0], env, lambda do |res|
+      State.new(line[0], env, lambda do |res|
         if res
           eval(line[1], env, kont)
         else
@@ -45,17 +46,26 @@ module Interpreter
       when :quote
         kont[sexp[1]]
       else
-        eval(sexp[0], env, lambda do |res|
+        State.new(sexp[0], env, lambda do |res|
           res.apply(sexp[1..-1], env, kont)
         end)
       end
   end
 
   def self.eval(code, env, kont)
-    if Array === code
-      eval_sexp(code, env, kont)
-    else
-      eval_atom(code, env, kont)
+    loop do 
+      res = if Array === code
+              eval_sexp(code, env, kont)
+            else
+              eval_atom(code, env, kont)
+            end
+      if State === res
+        code = res.exp
+        env = res.env
+        kont = res.kont
+      else
+        return res
+      end
     end
   end
 end
