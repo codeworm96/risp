@@ -18,7 +18,7 @@ class REPL
   end
 
   def value(code)
-    Interpreter.eval(Parser.parse(code), @env)
+    Interpreter.eval(Parser.parse(code), @env, lambda {|x| x})
   end
 
   def run

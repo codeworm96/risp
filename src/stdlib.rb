@@ -3,45 +3,45 @@ require_relative 'macro.rb'
 require_relative 'function.rb'
 
 class PrimCons < Function
-  def body(a, b)
+  def body(a, b, &kont)
     res = b.dup
-    res.unshift(a)
+    kont[res.unshift(a)]
   end
 end
 
 class PrimCar < Function
-  def body(arg)
-    arg[0]
+  def body(arg, &kont)
+    kont[arg[0]]
   end
 end
 
 class PrimCdr < Function
-  def body(arg)
-    arg[1..-1]
+  def body(arg, &kont)
+    kont[arg[1..-1]]
   end
 end
 
 class PrimNull < Function
-  def body(arg)
-    arg.empty?
+  def body(arg, &kont)
+    kont[arg.empty?]
   end
 end
 
 class PrimEq < Function
-  def body(a, b)
-    a == b
+  def body(a, b, &kont)
+    kont[a == b]
   end
 end
 
 class PrimAtom < Function
-  def body(arg)
-    !(Array === arg)
+  def body(arg, &kont)
+    kont[!(Array === arg)]
   end
 end
 
 class PrimNumber < Function
-  def body(arg)
-    (Integer === arg)||(Float === arg)
+  def body(arg, &kont)
+    kont[(Integer === arg)||(Float === arg)]
   end
 end
 
@@ -84,56 +84,56 @@ class MacroOr < Macro
 end
 
 class LogicNot < Function
-  def body(arg)
-    !arg
+  def body(arg, &kont)
+    kont[!arg]
   end
 end
 
 class MathEqual < Function
-  def body(a, b)
-    a == b
+  def body(a, b, &kont)
+    kont[a == b]
   end
 end
 
 class MathGreater < Function
-  def body(a, b)
-    a > b
+  def body(a, b, &kont)
+    kont[a > b]
   end
 end
 
 class MathLess < Function
-  def body(a, b)
-    a < b
+  def body(a, b, &kont)
+    kont[a < b]
   end
 end
 
 class MathAdd < Function
-  def body(a, b)
-    a + b
+  def body(a, b, &kont)
+    kont[a + b]
   end
 end
 
 class MathSub < Function
-  def body(a, b)
-    a - b
+  def body(a, b, &kont)
+    kont[a - b]
   end
 end
 
 class MathMul < Function
-  def body(a, b)
-    a * b
+  def body(a, b, &kont)
+    kont[a * b]
   end
 end
 
 class MathDiv < Function
-  def body(a, b)
-    a / b
+  def body(a, b, &kont)
+    kont[a / b]
   end
 end
 
 class MathMod < Function
-  def body(a, b)
-    a % b
+  def body(a, b, &kont)
+    kont[a % b]
   end
 end
 
